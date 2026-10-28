@@ -1,0 +1,509 @@
+{
+  "questions": [
+    {
+      "id": "it_setup",
+      "domain": "incident",
+      "roles": ["manager", "admin"],
+      "text": "会社の PC やネット、メールの設定は、ふだん誰がしていますか",
+      "textEasy": "会社の PC やネット、メールの設定を変えたり、新しく用意したりするのは、ふだん誰ですか",
+      "multiSelect": false,
+      "options": [
+        { "id": "self", "label": "自分がしている" },
+        { "id": "others", "label": "業者や社内の別の人に任せている" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "会社の PC やネット、メールの設定は、どなたが担当していますか。業者に任せている場合は、業者の名前と、任せている範囲も教えてください。"
+    },
+    {
+      "id": "security_owner",
+      "domain": "incident",
+      "roles": ["manager", "admin"],
+      "text": "会社のセキュリティの担当者は決まっていますか",
+      "textEasy": "ウイルスやパスワードなど、会社の PC やデータを守ることを任されている人はいますか。兼任でもかまいません",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "決まっている" },
+        { "id": "no", "label": "決まっていない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "会社の PC やデータを守る担当は、どなたになっていますか。兼任や業者への依頼でもかまいませんので、決まっているかどうかを教えてください。"
+    },
+    {
+      "id": "departed_accounts_process",
+      "domain": "account",
+      "roles": ["manager", "admin"],
+      "text": "社員が辞めたとき、その人のメールや社内システムのアカウントを止める手順は決まっていますか",
+      "textEasy": "辞めた人が、あとから会社のメールやファイルに入れないようにする手順はありますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "決まっていて、毎回止めている" },
+        { "id": "no", "label": "決まっていない・人によって違う" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "社員が辞めたとき、メールや社内システムのアカウントを誰がいつ止めるか、手順は決まっていますか。"
+    },
+    {
+      "id": "departed_accounts_days",
+      "domain": "account",
+      "roles": ["manager", "admin"],
+      "setupOnly": true,
+      "text": "最近辞めた人のアカウントは、退職日から何日で止めましたか",
+      "textEasy": "いちばん最近辞めた人のメールなどが使えなくなったのは、辞めた日からどのくらいあとでしたか",
+      "multiSelect": false,
+      "followupOf": "departed_accounts_process",
+      "when": { "departed_accounts_process": ["yes"] },
+      "options": [
+        { "id": "within_week", "label": "1 週間以内に止めた" },
+        { "id": "after_week", "label": "1 週間より後・まだ止めていない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "いちばん最近辞めた人のアカウントは、退職日から何日後に止めましたか。日数だけ教えてください。"
+    },
+    {
+      "id": "departed_accounts_count",
+      "domain": "account",
+      "roles": ["manager", "admin"],
+      "setupOnly": true,
+      "text": "辞めた人のアカウントで、まだ止めていないものは何件ありますか",
+      "textEasy": "メールやファイル共有の管理画面を見たとき、もう辞めた人のアカウントが残っていませんか。名前ではなく件数で答えてください",
+      "multiSelect": false,
+      "options": [
+        { "id": "zero", "label": "0 件" },
+        { "id": "some", "label": "1 件以上" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "メールやファイル共有の管理画面で、辞めた人のアカウントが残っていないか数えていただけますか。お名前は不要で、件数だけ教えてください。"
+    },
+    {
+      "id": "shared_accounts",
+      "domain": "account",
+      "roles": ["admin"],
+      "text": "何人かで同じ ID とパスワードを使って入っているサービスはありますか（会社の通販サイトのアカウント、共通のメールアドレスなど）",
+      "textEasy": "たとえば会社の通販サイトや経理のシステムに、みんなが同じ ID とパスワードで入っていませんか",
+      "multiSelect": false,
+      "options": [
+        { "id": "none", "label": "ない" },
+        { "id": "some", "label": "ある" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "社内のシステムやサービスで、何人かが同じ ID とパスワードで入っているものはありますか。"
+    },
+    {
+      "id": "saas_list",
+      "domain": "saas",
+      "roles": ["admin"],
+      "text": "会社で使っているクラウドのサービス（メール、会計、勤怠など）の一覧はありますか",
+      "textEasy": "ネットで使う会社のサービスを、サービス名と管理する人を並べて書いた表やメモはありますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "ある" },
+        { "id": "no", "label": "ない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "会社で契約しているクラウドのサービス（メール、会計、勤怠、ファイル共有など）を一覧にしたものはありますか。"
+    },
+    {
+      "id": "saas_admin_known",
+      "domain": "saas",
+      "roles": ["manager", "admin"],
+      "text": "会社で使っているクラウドのサービスごとに、管理する人は決まっていますか",
+      "textEasy": "メールや会計などのサービスで、パスワードを変えたりアカウントを止めたりできる人が、サービスごとに決まっていますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "すべて決まっている" },
+        { "id": "no", "label": "決まっていないものがある" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "会社で使っているメール・会計・勤怠などのサービスごとに、アカウントを追加したり止めたりできる管理者はどなたですか。"
+    },
+    {
+      "id": "mail_service",
+      "domain": "email",
+      "roles": ["admin"],
+      "text": "会社のメールは、どちらの画面で読んでいますか",
+      "textEasy": "会社のメールを読むときに開いている画面は、Gmail と Outlook のどちらに近いですか",
+      "multiSelect": false,
+      "options": [
+        { "id": "google", "label": "Gmail の画面（Google Workspace）" },
+        { "id": "microsoft", "label": "Outlook の画面（Microsoft 365）" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "会社のメールは、Google Workspace と Microsoft 365 のどちらで契約していますか。ほかのサービスならその名前を教えてください。"
+    },
+    {
+      "id": "mfa_enabled",
+      "domain": "email",
+      "roles": ["manager", "admin"],
+      "text": "新しい PC やスマホで会社のメールに入るとき、パスワードのあとに、スマホに届いた番号を入れたり、スマホで「承認」を押したりしますか",
+      "textEasy": "初めて使う PC やスマホで会社のメールを開くとき、パスワードのほかに、スマホに届いた番号を入れたり、スマホで「承認」を押したりしますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "する" },
+        { "id": "no", "label": "しない（パスワードだけで入れる）" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "会社のメールで、2 段階認証（パスワードに加えてスマホなどで確認する仕組み）はオンになっていますか。"
+    },
+    {
+      "id": "mfa_coverage",
+      "domain": "email",
+      "roles": ["manager", "admin"],
+      "setupOnly": true,
+      "text": "2 段階認証は、社員全員がオンになっていますか",
+      "textEasy": "スマホでの確認は、一部の人だけでなく全員に求められていますか",
+      "multiSelect": false,
+      "followupOf": "mfa_enabled",
+      "when": { "mfa_enabled": ["yes"] },
+      "options": [
+        { "id": "all", "label": "全員オン" },
+        { "id": "some", "label": "オンでない人がいる" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "メールの管理画面で、2 段階認証がオンになっていないアカウントが何件あるか教えてください。お名前は不要です。"
+    },
+    {
+      "id": "email_misdelivery",
+      "domain": "email",
+      "roles": ["admin"],
+      "text": "社外にメールを送るとき、送る前に宛先の確認画面が出たり、添付ファイルが自動でダウンロードのリンクに変わったりしますか",
+      "textEasy": "社外にメールを送る前に宛先を確かめる画面が出る、送ったあと少しの間なら取り消せる、といった仕組みはありますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "どちらかがある" },
+        { "id": "no", "label": "どちらもない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "社外へメールを送るとき、送る前に宛先を確かめる仕組みや、送信を取り消せる設定は入っていますか。"
+    },
+    {
+      "id": "backup_exists",
+      "domain": "backup",
+      "roles": ["manager", "admin"],
+      "text": "会社の大事なデータのバックアップを取っていますか",
+      "textEasy": "共有フォルダや会計データなどが消えたときのために、別の場所へ写しを取っていますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "取っている" },
+        { "id": "no", "label": "取っていない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "共有フォルダや会計データなど、会社の大事なデータのバックアップは取っていますか。"
+    },
+    {
+      "id": "backup_location",
+      "domain": "backup",
+      "roles": ["manager", "admin"],
+      "setupOnly": true,
+      "text": "バックアップはどこに保存していますか",
+      "textEasy": "写しを置いている場所は、元のデータとは別の場所ですか",
+      "multiSelect": false,
+      "followupOf": "backup_exists",
+      "when": { "backup_exists": ["yes"] },
+      "options": [
+        { "id": "separate", "label": "社外のクラウドや、ふだんつないでいない機器" },
+        { "id": "same", "label": "元のデータと同じ機器や社内のネットワークの中だけ" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "バックアップの保存先はどこですか。元のデータと同じ機器や社内のネットワークの中だけか、社外のクラウドやふだんはつないでいない機器にもあるかを教えてください。"
+    },
+    {
+      "id": "backup_generations",
+      "domain": "backup",
+      "roles": ["manager", "admin"],
+      "setupOnly": true,
+      "text": "バックアップは、何日か前の状態にもさかのぼって戻せますか",
+      "textEasy": "写しは毎回上書きしていますか。それとも何日か前の分も残っていますか",
+      "multiSelect": false,
+      "followupOf": "backup_exists",
+      "when": { "backup_exists": ["yes"] },
+      "options": [
+        { "id": "multiple", "label": "何日か前の分も残っている" },
+        { "id": "latest_only", "label": "最新の 1 つだけ（毎回上書き）" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "バックアップは何日分（何世代分）残していますか。毎回上書きしているかどうかも教えてください。"
+    },
+    {
+      "id": "backup_restore_tested",
+      "domain": "backup",
+      "roles": ["manager", "admin"],
+      "setupOnly": true,
+      "text": "この 1 年で、バックアップから実際にデータを戻せるか試しましたか",
+      "textEasy": "写しから、ファイルを 1 つでも元に戻してみたことはありますか",
+      "multiSelect": false,
+      "followupOf": "backup_exists",
+      "when": { "backup_exists": ["yes"] },
+      "options": [
+        { "id": "yes", "label": "試して、戻せた" },
+        { "id": "no", "label": "試していない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "この 1 年の間に、バックアップからデータを戻すテストをしましたか。した場合は、いつ頃だったかも教えてください。"
+    },
+    {
+      "id": "telework",
+      "domain": "remote",
+      "roles": ["manager", "admin"],
+      "text": "自宅や出先から、社内のファイルやシステムを使うことはありますか",
+      "textEasy": "会社の外にいるときに、会社の共有フォルダや社内のシステムを開くことはありますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "ある" },
+        { "id": "no", "label": "ない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "社員が自宅や出先から、社内の共有フォルダやシステムにつなぐことはありますか。"
+    },
+    {
+      "id": "vpn_used",
+      "domain": "remote",
+      "roles": ["admin"],
+      "text": "家や出先から社内のファイルやシステムを使うとき、先に専用のアプリを立ち上げて会社につなぎますか",
+      "textEasy": "会社の外から社内のファイルを開くとき、その前に、会社につなぐための専用のアプリを立ち上げますか",
+      "multiSelect": false,
+      "when": { "telework": ["yes"] },
+      "options": [
+        { "id": "yes", "label": "つなぐ（VPN などのアプリ）" },
+        { "id": "no", "label": "つながない・そのまま開ける" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "selectsChecks": { "yes": ["vpn_client"] },
+      "howToAsk": "社外から社内のネットワークにつなぐのに、VPN を使っていますか。使っている場合は、機器やソフトの名前も教えてください。"
+    },
+    {
+      "id": "vpn_updated",
+      "domain": "remote",
+      "roles": ["manager", "admin"],
+      "setupOnly": true,
+      "text": "VPN の機器が最新の状態になっているか、この 3 か月以内に確かめましたか",
+      "textEasy": "社外からつなぐための機器が新しい状態になっているか、最近だれかが確かめましたか",
+      "multiSelect": false,
+      "followupOf": "vpn_used",
+      "when": { "vpn_used": ["yes"] },
+      "options": [
+        { "id": "yes", "label": "確かめた" },
+        { "id": "no", "label": "確かめていない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "VPN の機器は、メーカーが出している最新の更新を当ててありますか。最後に更新した日を教えてください。"
+    },
+    {
+      "id": "remote_desktop",
+      "domain": "remote",
+      "roles": ["admin"],
+      "text": "家や出先から、会社の PC の画面をそのまま操作することはありますか（TeamViewer、Chrome リモート デスクトップなど）",
+      "textEasy": "自宅などから、会社に置いてある PC の画面を開いてそのまま操作することはありますか",
+      "multiSelect": false,
+      "when": { "telework": ["yes"] },
+      "options": [
+        { "id": "no", "label": "ない" },
+        { "id": "yes", "label": "ある" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "社外から社内の PC やサーバーの画面を操作する仕組み（リモートデスクトップや遠隔操作のソフト）を使っていますか。使っている場合は、ソフトの名前も教えてください。"
+    },
+    {
+      "id": "systems_updated",
+      "domain": "remote",
+      "roles": ["manager", "admin"],
+      "text": "VPN、ルーター、共有フォルダの機器、会計などの業務ソフトといった、会社で使っている機器やシステムの更新を、誰かが定期的にしていますか",
+      "textEasy": "会社で使っている機器やソフト（社外からつなぐ機器、ルーター、ファイルを置く機器、会計ソフトなど）を新しい状態にする作業を、業者か社内の誰かが定期的にしていますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "している（業者の保守や社内の担当）" },
+        { "id": "no", "label": "していない・決まっていない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "会社で使っている機器やシステム（VPN、ルーター、NAS、業務ソフトなど）の更新は、どなたが、どのくらいの間隔でしていますか。保守の契約に入っている場合は、その範囲も教えてください。"
+    },
+    {
+      "id": "wifi_guest_separated",
+      "domain": "network",
+      "roles": ["admin"],
+      "text": "来客に Wi-Fi を貸すとき、社員と同じ Wi-Fi の名前とパスワードを教えていますか",
+      "textEasy": "お客さんに Wi-Fi を使ってもらうとき、社員の PC がつながっているのと同じ Wi-Fi のパスワードを教えていますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "separated", "label": "教えていない（来客用が別にある・貸していない）" },
+        { "id": "same", "label": "社員と同じものを教えている" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "来客用の Wi-Fi は、社員が使う Wi-Fi と分かれていますか。"
+    },
+    {
+      "id": "wifi_password_changed",
+      "domain": "network",
+      "roles": ["admin"],
+      "text": "社員が使う Wi-Fi のパスワードは、人が辞めたときや定期的に変えていますか",
+      "textEasy": "会社の Wi-Fi のパスワードは、ずっと同じままではありませんか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "変えている" },
+        { "id": "no", "label": "ずっと同じ" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "社員用の Wi-Fi のパスワードは、最後にいつ変えましたか。"
+    },
+    {
+      "id": "nas_exists",
+      "domain": "network",
+      "roles": ["admin"],
+      "text": "社内に、みんながファイルを置く共有フォルダ用の箱型の機器（NAS など）はありますか",
+      "textEasy": "みんなでファイルを置いておく箱のような機器が、社内に置いてありますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "ある" },
+        { "id": "no", "label": "ない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "社内に、共有フォルダ用の機器（NAS やファイルサーバー）はありますか。ある場合は、機器の名前も教えてください。"
+    },
+    {
+      "id": "nas_updated",
+      "domain": "network",
+      "roles": ["manager", "admin"],
+      "setupOnly": true,
+      "text": "共有フォルダ用の機器が最新の状態になっているか、この 1 年以内に確かめましたか",
+      "textEasy": "ファイルを置いておく機器の中身が新しい状態になっているか、最近だれかが確かめましたか",
+      "multiSelect": false,
+      "when": { "nas_exists": ["yes"] },
+      "options": [
+        { "id": "yes", "label": "確かめた" },
+        { "id": "no", "label": "確かめていない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "共有フォルダ用の機器（NAS など）は、メーカーが出している最新の更新を当ててありますか。最後に更新した日を教えてください。"
+    },
+    {
+      "id": "cloud_extra",
+      "domain": "saas",
+      "roles": ["admin"],
+      "text": "メールのサービスのほかに、Dropbox や Box などのファイル共有サービスを会社として使っていますか",
+      "textEasy": "ファイルをネット上に置いて社内外と共有するサービスを、会社として契約していますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "no", "label": "使っていない" },
+        { "id": "yes", "label": "使っている" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "メールのサービス以外に、会社として使っているファイル共有のサービス（Dropbox や Box など）はありますか。"
+    },
+    {
+      "id": "cloud_extra_which",
+      "domain": "saas",
+      "roles": ["admin"],
+      "text": "会社として使っているファイル共有サービスはどれですか",
+      "textEasy": "会社として契約しているファイル共有のサービスはどれですか。ほかのサービスなら、その名前を書いてください",
+      "multiSelect": true,
+      "when": { "cloud_extra": ["yes"] },
+      "options": [
+        { "id": "dropbox", "label": "Dropbox" },
+        { "id": "box", "label": "Box" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "会社として契約しているファイル共有のサービスの名前を、すべて教えてください。"
+    },
+    {
+      "id": "incident_contact",
+      "domain": "incident",
+      "roles": ["manager", "admin"],
+      "text": "ウイルス感染や情報漏れに気づいたとき、社員が最初に誰へ連絡するか決まっていて、全員が知っていますか",
+      "textEasy": "「変なメールを開いてしまった」と気づいた社員が、すぐに誰へ知らせればいいか、みんな知っていますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "決まっていて、全員が知っている" },
+        { "id": "no", "label": "決まっていない・知らない人がいる" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "ウイルス感染や情報漏れに気づいたとき、社員が最初に連絡する先は決まっていますか。社員にはどう伝えていますか。"
+    },
+    {
+      "id": "incident_vendor",
+      "domain": "incident",
+      "roles": ["manager", "admin"],
+      "text": "事故のときに相談できる業者や窓口の連絡先は、すぐわかる所にありますか",
+      "textEasy": "PC やネットのトラブルで困ったときに電話できる業者の連絡先を、すぐに出せますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "すぐわかる" },
+        { "id": "no", "label": "決まっていない・すぐには出せない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "ウイルス感染などの事故が起きたとき、相談できる業者や窓口はどこですか。連絡先はどこに控えてありますか。"
+    },
+    {
+      "id": "incident_procedure",
+      "domain": "incident",
+      "roles": ["admin"],
+      "text": "事故のときにやること（PC をネットから外す、誰に報告するか など）を書いた手順はありますか",
+      "textEasy": "ウイルスに感染したかもしれないとき、まず何をするかを書いた紙やファイルはありますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "ある" },
+        { "id": "no", "label": "ない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "ウイルス感染や情報漏れが起きたときの手順を書いたものはありますか。ある場合は、どこに置いてありますか。"
+    },
+    {
+      "id": "training",
+      "domain": "education",
+      "roles": ["manager", "admin"],
+      "text": "この 1 年で、怪しいメールの見分け方などを社員に伝える機会はありましたか",
+      "textEasy": "研修や朝礼、社内への連絡などで、だましのメールに気をつけるよう伝えたことはありますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "あった" },
+        { "id": "no", "label": "なかった" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "この 1 年で、社員向けにセキュリティの研修や注意の呼びかけ（怪しいメールの見分け方など）をしましたか。"
+    },
+    {
+      "id": "rules_documented",
+      "domain": "education",
+      "roles": ["admin"],
+      "text": "パスワードの決め方や、私物の USB メモリ・スマホの使い方など、社員が守るルールを文書にしていますか",
+      "textEasy": "PC やデータの扱い方で社員に守ってほしいことを、紙やファイルにまとめてありますか",
+      "multiSelect": false,
+      "options": [
+        { "id": "yes", "label": "文書にしている" },
+        { "id": "no", "label": "していない" },
+        { "id": "unknown", "label": "わからない" },
+        { "id": "later", "label": "あとで確認" }
+      ],
+      "howToAsk": "パスワードの決め方や私物の USB メモリ・スマホの使い方など、社員向けのルールを書いたものはありますか。"
+    }
+  ]
+}

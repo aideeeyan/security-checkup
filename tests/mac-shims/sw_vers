@@ -1,0 +1,9 @@
+#!/bin/bash
+# Fake sw_vers (sample output of macOS). SHIM_SW_VERS overrides the version.
+v="${SHIM_SW_VERS:-15.6.1}"
+case "$1" in
+  -productVersion) echo "$v" ;;
+  -buildVersion) echo "${SHIM_SW_BUILD:-24G90}" ;;
+  -productName) echo "macOS" ;;
+  *) printf 'ProductName:\t\tmacOS\nProductVersion:\t\t%s\nBuildVersion:\t\t%s\n' "$v" "${SHIM_SW_BUILD:-24G90}" ;;
+esac

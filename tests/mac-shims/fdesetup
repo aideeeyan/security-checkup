@@ -1,0 +1,10 @@
+#!/bin/bash
+# Fake fdesetup status. SHIM_FDESETUP = on (default) | off | offrestart | progress | weird | fail
+case "${SHIM_FDESETUP:-on}" in
+  on) echo "FileVault is On." ;;
+  off) echo "FileVault is Off." ;;
+  offrestart) echo "FileVault is Off, but will be enabled after the next restart." ;;
+  progress) printf 'FileVault is On.\nEncryption in progress: Percent completed = 12.5\n' ;;
+  weird) echo "Something else" ;;
+  fail) echo "Error: operation not permitted" >&2; exit 1 ;;
+esac

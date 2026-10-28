@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "label": "山田",
+  "checkedAt": "2026-10-20",
+  "os": "windows",
+  "osVersion": "10.0.26100",
+  "checks": {
+    "antivirus": { "facts": { "products": [{ "name": "Windows Defender", "enabled": true, "upToDate": true }], "definitionsUpdatedAt": "2026-10-20", "lastScanAt": "2026-10-18" }, "unavailable": null },
+    "disk_encryption": { "facts": { "encrypted": true }, "unavailable": null },
+    "os_update": { "facts": { "lastInstalledAt": "2026-10-14", "pendingCount": 0 }, "unavailable": null },
+    "os_support": { "facts": { "name": "Windows 11", "version": "24H2", "build": "26100" }, "unavailable": null },
+    "firewall": { "facts": { "enabled": true }, "unavailable": null },
+    "screen_lock": { "facts": { "timeoutMinutes": 5, "requiresPassword": true }, "unavailable": null },
+    "local_admin": { "facts": { "isAdmin": false }, "unavailable": null },
+    "remote_access": { "facts": { "rdpEnabled": false, "sshEnabled": false, "screenSharingEnabled": null }, "unavailable": null },
+    "vpn_client": { "facts": { "products": [{ "name": "FortiClient", "version": "7.2.4" }] }, "unavailable": null },
+    "cloud_sync": { "facts": { "products": ["OneDrive"] }, "unavailable": null },
+    "browser": { "facts": { "browsers": [{ "name": "Chrome", "version": "130.0.6723.70" }, { "name": "Edge", "version": "130.0.2849.46" }] }, "unavailable": null }
+  }
+}

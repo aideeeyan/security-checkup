@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "label": "佐藤",
+  "checkedAt": "2026-10-22",
+  "os": "mac",
+  "osVersion": "13.6.1",
+  "checks": {
+    "antivirus": { "facts": { "products": [], "definitionsUpdatedAt": null, "lastScanAt": null }, "unavailable": "needs_admin" },
+    "disk_encryption": { "facts": { "encrypted": false }, "unavailable": null },
+    "os_update": { "facts": { "lastInstalledAt": "2026-07-30", "pendingCount": 2 }, "unavailable": null },
+    "os_support": { "facts": { "name": "macOS", "version": "13.6.1", "build": "22G313" }, "unavailable": null },
+    "firewall": { "facts": { "enabled": false }, "unavailable": null },
+    "screen_lock": { "facts": { "timeoutMinutes": 20, "requiresPassword": true }, "unavailable": null },
+    "local_admin": { "facts": { "isAdmin": true }, "unavailable": null },
+    "remote_access": { "facts": { "rdpEnabled": null, "sshEnabled": false, "screenSharingEnabled": true }, "unavailable": null },
+    "vpn_client": { "facts": { "products": [] }, "unavailable": null },
+    "cloud_sync": { "facts": { "products": ["Dropbox", "iCloud Drive"] }, "unavailable": null },
+    "browser": { "facts": { "browsers": [{ "name": "Chrome", "version": "118.0.5993.88" }, { "name": "Safari", "version": "17.0" }] }, "unavailable": null }
+  }
+}

@@ -1,0 +1,4 @@
+#!/bin/bash
+# Fake system_profiler SPInstallHistoryDataType -json. SHIM_SYSPROF_FILE = file with the JSON; SHIM_SYSPROF=fail makes it fail.
+[ "$SHIM_SYSPROF" = "fail" ] && { echo "system_profiler: failed" >&2; exit 1; }
+cat "${SHIM_SYSPROF_FILE:-$(dirname "$0")/data/install-history.json}"

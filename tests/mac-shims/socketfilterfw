@@ -1,0 +1,8 @@
+#!/bin/bash
+# Fake socketfilterfw --getglobalstate. SHIM_FW = 1 (default) | 0 | 2 | weird
+case "${SHIM_FW:-1}" in
+  1) echo "Firewall is enabled. (State = 1)" ;;
+  0) echo "Firewall is disabled. (State = 0)" ;;
+  2) echo "Firewall is set to block all non-essential incoming connections. (State = 2)" ;;
+  weird) echo "hello" ;;
+esac

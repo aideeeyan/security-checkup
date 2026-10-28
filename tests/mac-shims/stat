@@ -1,0 +1,9 @@
+#!/bin/bash
+# Fake BSD stat for "stat -f %Sm -t %Y-%m-%d FILE": prints SHIM_STAT_DAY (a date, or any text to test bad output).
+# SHIM_STAT=real runs the real stat (on Linux, "stat -f" then means filesystem status, which parts must tolerate).
+if [ "$SHIM_STAT" = "real" ]; then exec /usr/bin/stat "$@"; fi
+if [ "$1 $2 $3 $4" = "-f %Sm -t %Y-%m-%d" ]; then
+  [ -n "$SHIM_STAT_DAY" ] || exit 1
+  echo "$SHIM_STAT_DAY"; exit 0
+fi
+exec /usr/bin/stat "$@"

@@ -1,0 +1,10 @@
+#!/bin/bash
+# Fake pmset -g. SHIM_DISPLAYSLEEP minutes (default 10).
+cat <<OUT
+System-wide power settings:
+Currently in use:
+ standby              1
+ powernap             1
+ displaysleep         ${SHIM_DISPLAYSLEEP-10}
+ sleep                1
+OUT

@@ -1,0 +1,12 @@
+#!/bin/bash
+# Fake sysadminctl -screenLock status (real one logs to stderr). SHIM_SYSADMINCTL = delay (default, 300 s) | delay60 | immediate | off | denied | denied0 | weird
+ts="2026-10-24 10:00:00.123 sysadminctl[1234:5678]"
+case "${SHIM_SYSADMINCTL:-delay}" in
+  delay) echo "$ts screenLock delay is 300 seconds" >&2 ;;
+  delay60) echo "$ts screenLock delay is 60 seconds" >&2 ;;
+  immediate) echo "$ts screenLock delay is immediate" >&2 ;;
+  off) echo "$ts screenLock is off" >&2 ;;
+  denied) echo "$ts Operation is not permitted without admin privileges" >&2; exit 1 ;;
+  denied0) echo "$ts Operation is not permitted without admin privileges" >&2 ;;
+  weird) echo "$ts hello" >&2 ;;
+esac

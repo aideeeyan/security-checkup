@@ -1,0 +1,15 @@
+#!/bin/bash
+# Fake defaults. "read <path> <key>" reads an old-style text plist (<path>.plist or <path>) written by the tests.
+# "-currentHost read com.apple.screensaver idleTime" returns SHIM_SS_IDLE (default 600 seconds; "none" = key missing).
+if [ "$1" = "-currentHost" ]; then
+  [ "$2 $3 $4" = "read com.apple.screensaver idleTime" ] || exit 1
+  v="${SHIM_SS_IDLE-600}"
+  [ "$v" = "none" ] && { echo "The domain/default pair of (com.apple.screensaver, idleTime) does not exist" >&2; exit 1; }
+  echo "$v"; exit 0
+fi
+[ "$1" = "read" ] || exit 1
+f="$2.plist"; [ -f "$f" ] || f="$2"
+[ -f "$f" ] || { echo "The domain/default pair of ($2, $3) does not exist" >&2; exit 1; }
+v=$(sed -n "s/^[[:space:]]*$3[[:space:]]*=[[:space:]]*\"\{0,1\}\([^\";]*\)\"\{0,1\};.*/\1/p" "$f" | head -n 1)
+[ -n "$v" ] || { echo "The domain/default pair of ($2, $3) does not exist" >&2; exit 1; }
+echo "$v"

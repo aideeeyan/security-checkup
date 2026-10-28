@@ -1,0 +1,4 @@
+#!/bin/bash
+# Fake open: records the argument instead of opening anything.
+[ -n "$SHIM_OPEN_LOG" ] && echo "$@" >> "$SHIM_OPEN_LOG"
+exit 0

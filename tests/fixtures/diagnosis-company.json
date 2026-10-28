@@ -1,0 +1,337 @@
+{
+  "version": 1,
+  "createdAt": "2026-10-24",
+  "mode": "company",
+  "role": "admin",
+  "literacy": 2,
+  "company": {
+    "name": "サンプル商事",
+    "pcCount": 38
+  },
+  "answers": {
+    "backup_exists": "yes",
+    "backup_location": "same",
+    "backup_generations": "multiple",
+    "backup_restore_tested": "later",
+    "departed_accounts_process": "no",
+    "departed_accounts_count": "unknown",
+    "mfa_enabled": "yes",
+    "mfa_coverage": "some",
+    "mail_service": "google",
+    "cloud_extra": "yes",
+    "cloud_extra_which": [
+      "dropbox"
+    ],
+    "telework": "yes",
+    "vpn_used": "yes",
+    "vpn_updated": "unknown",
+    "incident_contact": "later"
+  },
+  "pcs": [
+    {
+      "version": 1,
+      "label": "山田",
+      "checkedAt": "2026-10-20",
+      "os": "windows",
+      "osVersion": "10.0.26100",
+      "checks": {
+        "antivirus": {
+          "facts": {
+            "products": [
+              {
+                "name": "Windows Defender",
+                "enabled": true,
+                "upToDate": true
+              }
+            ],
+            "definitionsUpdatedAt": "2026-10-20",
+            "lastScanAt": "2026-10-18"
+          },
+          "unavailable": null
+        },
+        "disk_encryption": {
+          "facts": {
+            "encrypted": true
+          },
+          "unavailable": null
+        },
+        "os_update": {
+          "facts": {
+            "lastInstalledAt": "2026-10-14",
+            "pendingCount": 0
+          },
+          "unavailable": null
+        },
+        "os_support": {
+          "facts": {
+            "name": "Windows 11",
+            "version": "24H2",
+            "build": "26100"
+          },
+          "unavailable": null
+        },
+        "firewall": {
+          "facts": {
+            "enabled": true
+          },
+          "unavailable": null
+        },
+        "screen_lock": {
+          "facts": {
+            "timeoutMinutes": 5,
+            "requiresPassword": true
+          },
+          "unavailable": null
+        },
+        "local_admin": {
+          "facts": {
+            "isAdmin": false
+          },
+          "unavailable": null
+        },
+        "remote_access": {
+          "facts": {
+            "rdpEnabled": false,
+            "sshEnabled": false,
+            "screenSharingEnabled": null
+          },
+          "unavailable": null
+        },
+        "vpn_client": {
+          "facts": {
+            "products": [
+              {
+                "name": "FortiClient",
+                "version": "7.2.4"
+              }
+            ]
+          },
+          "unavailable": null
+        },
+        "cloud_sync": {
+          "facts": {
+            "products": [
+              "OneDrive"
+            ]
+          },
+          "unavailable": null
+        },
+        "browser": {
+          "facts": {
+            "browsers": [
+              {
+                "name": "Chrome",
+                "version": "130.0.6723.70"
+              },
+              {
+                "name": "Edge",
+                "version": "130.0.2849.46"
+              }
+            ]
+          },
+          "unavailable": null
+        }
+      }
+    },
+    {
+      "version": 1,
+      "label": "佐藤",
+      "checkedAt": "2026-10-22",
+      "os": "mac",
+      "osVersion": "13.6.1",
+      "checks": {
+        "antivirus": {
+          "facts": {
+            "products": [],
+            "definitionsUpdatedAt": null,
+            "lastScanAt": null
+          },
+          "unavailable": "needs_admin"
+        },
+        "disk_encryption": {
+          "facts": {
+            "encrypted": false
+          },
+          "unavailable": null
+        },
+        "os_update": {
+          "facts": {
+            "lastInstalledAt": "2026-07-30",
+            "pendingCount": 2
+          },
+          "unavailable": null
+        },
+        "os_support": {
+          "facts": {
+            "name": "macOS",
+            "version": "13.6.1",
+            "build": "22G313"
+          },
+          "unavailable": null
+        },
+        "firewall": {
+          "facts": {
+            "enabled": false
+          },
+          "unavailable": null
+        },
+        "screen_lock": {
+          "facts": {
+            "timeoutMinutes": 20,
+            "requiresPassword": true
+          },
+          "unavailable": null
+        },
+        "local_admin": {
+          "facts": {
+            "isAdmin": true
+          },
+          "unavailable": null
+        },
+        "remote_access": {
+          "facts": {
+            "rdpEnabled": null,
+            "sshEnabled": false,
+            "screenSharingEnabled": true
+          },
+          "unavailable": null
+        },
+        "vpn_client": {
+          "facts": {
+            "products": []
+          },
+          "unavailable": null
+        },
+        "cloud_sync": {
+          "facts": {
+            "products": [
+              "Dropbox",
+              "iCloud Drive"
+            ]
+          },
+          "unavailable": null
+        },
+        "browser": {
+          "facts": {
+            "browsers": [
+              {
+                "name": "Chrome",
+                "version": "118.0.5993.88"
+              },
+              {
+                "name": "Safari",
+                "version": "17.0"
+              }
+            ]
+          },
+          "unavailable": null
+        }
+      }
+    },
+    {
+      "version": 1,
+      "label": "山田",
+      "checkedAt": "2026-08-05",
+      "os": "windows",
+      "osVersion": "10.0.26100",
+      "checks": {
+        "antivirus": {
+          "facts": {
+            "products": [
+              {
+                "name": "Windows Defender",
+                "enabled": true,
+                "upToDate": true
+              }
+            ],
+            "definitionsUpdatedAt": "2026-10-20",
+            "lastScanAt": "2026-10-18"
+          },
+          "unavailable": null
+        },
+        "disk_encryption": {
+          "facts": {
+            "encrypted": false
+          },
+          "unavailable": null
+        },
+        "os_update": {
+          "facts": {
+            "lastInstalledAt": "2026-10-14",
+            "pendingCount": 0
+          },
+          "unavailable": null
+        },
+        "os_support": {
+          "facts": {
+            "name": "Windows 11",
+            "version": "24H2",
+            "build": "26100"
+          },
+          "unavailable": null
+        },
+        "firewall": {
+          "facts": {
+            "enabled": true
+          },
+          "unavailable": null
+        },
+        "screen_lock": {
+          "facts": {
+            "timeoutMinutes": 5,
+            "requiresPassword": true
+          },
+          "unavailable": null
+        },
+        "local_admin": {
+          "facts": {
+            "isAdmin": false
+          },
+          "unavailable": null
+        },
+        "remote_access": {
+          "facts": {
+            "rdpEnabled": false,
+            "sshEnabled": false,
+            "screenSharingEnabled": null
+          },
+          "unavailable": null
+        },
+        "vpn_client": {
+          "facts": {
+            "products": [
+              {
+                "name": "FortiClient",
+                "version": "7.2.4"
+              }
+            ]
+          },
+          "unavailable": null
+        },
+        "cloud_sync": {
+          "facts": {
+            "products": [
+              "OneDrive"
+            ]
+          },
+          "unavailable": null
+        },
+        "browser": {
+          "facts": {
+            "browsers": [
+              {
+                "name": "Chrome",
+                "version": "130.0.6723.70"
+              },
+              {
+                "name": "Edge",
+                "version": "130.0.2849.46"
+              }
+            ]
+          },
+          "unavailable": null
+        }
+      }
+    }
+  ]
+}

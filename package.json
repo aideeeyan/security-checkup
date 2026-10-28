@@ -1,0 +1,9 @@
+{
+  "name": "security-checkup",
+  "private": true,
+  "license": "MIT",
+  "description": "security-checkup スキルの開発用（配布物には含めない）",
+  "scripts": {
+    "test": "bun test"
+  }
+}

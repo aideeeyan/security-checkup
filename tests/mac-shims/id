@@ -1,0 +1,7 @@
+#!/bin/bash
+# Fake id. SHIM_ID_GN groups (default includes admin), SHIM_UID (default 501).
+case "$1" in
+  -Gn) echo "${SHIM_ID_GN-staff everyone localaccounts _appstore admin}" ;;
+  -u) echo "${SHIM_UID-501}" ;;
+  *) /usr/bin/id "$@" ;;
+esac

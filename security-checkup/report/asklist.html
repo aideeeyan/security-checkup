@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>業者・担当者に聞くことリスト</title>
+<style>
+  :root {
+    --bg: #eef1f4; --paper: #ffffff; --fg: #1d2630; --muted: #5d6b78; --line: #d5dce3;
+    --accent: #1f4f7a; --accent-soft: #e3ecf5;
+    --bad: #b3261e; --bad-soft: #fbe9e7; --warn: #8a5a00; --warn-soft: #fdf1d8;
+    --ok: #1e6b3a; --ok-soft: #e4f3e8; --unk: #55606b; --unk-soft: #eceff2;
+    --font: "BIZ UDPGothic", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", "Noto Sans CJK JP", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) { :root {
+    --bg: #12171c; --paper: #1b2229; --fg: #e4e9ee; --muted: #9aa7b3; --line: #2f3a45;
+    --accent: #8fb8de; --accent-soft: #22323f;
+    --bad: #f2a29b; --bad-soft: #3a1f1d; --warn: #f0c46b; --warn-soft: #362b14;
+    --ok: #8fd3a5; --ok-soft: #18301f; --unk: #b4bec8; --unk-soft: #262e36; color-scheme: dark; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font); line-height: 1.7; padding: 24px 16px 48px; }
+  #app { max-width: 860px; margin: 0 auto; }
+  h2, h3 { margin: 0; line-height: 1.4; }
+  a { color: var(--accent); }
+  .paper { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 28px clamp(16px, 4vw, 40px); display: grid; gap: 22px; }
+  .paper > * { min-width: 0; }
+  .paper p { margin: 0; }
+  .head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-bottom: 2px solid var(--fg); padding-bottom: 12px; }
+  .head h2 { font-size: 1.4rem; }
+  .head .meta { font-size: .85rem; color: var(--muted); text-align: right; }
+  .nav { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .9rem; }
+  .nav [aria-current] { font-weight: 700; border-bottom: 2px solid var(--accent); }
+  .note { font-size: .9rem; color: var(--muted); background: var(--accent-soft); padding: 10px 14px; border-radius: 6px; }
+  .level { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .level .grade { font-size: 2.6rem; font-weight: 700; color: var(--accent); line-height: 1; }
+  .level .grade.g-A { color: var(--ok); } .level .grade.g-B { color: var(--accent); }
+  .level .grade.g-C { color: var(--warn); } .level .grade.g-D, .level .grade.g-E { color: var(--bad); }
+  .level p { flex: 1 1 260px; }
+  .level small { color: var(--muted); display: block; font-size: .8rem; }
+  .pill { display: inline-block; font-size: .8rem; font-weight: 700; padding: 1px 10px; border-radius: 999px; white-space: nowrap; }
+  .bad { color: var(--bad); background: var(--bad-soft); }
+  .warn { color: var(--warn); background: var(--warn-soft); }
+  .ok { color: var(--ok); background: var(--ok-soft); }
+  .unk { color: var(--unk); background: var(--unk-soft); }
+  .scenes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 12px; }
+  .scene { border: 1px solid var(--line); border-top-width: 4px; border-radius: 4px; padding: 14px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+  .scene.s-bad { border-top-color: var(--bad); } .scene.s-warn { border-top-color: var(--warn); }
+  .scene.s-ok { border-top-color: var(--ok); } .scene.s-unk { border-top-color: var(--unk); }
+  .scene h3 { font-size: 1rem; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+  .scene p { font-size: .92rem; overflow-wrap: anywhere; }
+  .scene .next { font-size: .88rem; color: var(--accent); font-weight: 700; }
+  .tablewrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+  th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .8rem; color: var(--muted); }
+  .pc h3 { font-size: 1.05rem; margin-bottom: 6px; }
+  .pc .sub { font-size: .8rem; font-weight: 400; color: var(--muted); margin-left: 10px; }
+  ol.todo { margin: 0; padding-left: 1.4em; display: grid; gap: 14px; }
+  ol.todo b { display: block; }
+  ol.todo span { font-size: .9rem; color: var(--muted); display: block; margin-top: 2px; }
+  .foot { font-size: .85rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; }
+  @media (max-width: 480px) { .head .meta { text-align: left; } }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="baseline.js"></script>
+<script src="engine.js"></script>
+<script src="scenes.js"></script>
+<script src="questions.js"></script>
+<script src="pcs.js"></script>
+<script src="data.js"></script>
+<script>
+(function () {
+  var app = document.getElementById("app");
+  try {
+    var E = window.SC_ENGINE, d = window.SC_DATA;
+    if (!E || !d || typeof d !== "object") throw new Error("data");
+    // 社員の結果ファイル（pcs.js。なくてもよい）を 1 件ずつ読んで足す。読めないものは件数として数える
+    E.mergePcs(d, window.SC_PCS);
+    var qs = (window.SC_QUESTIONS && window.SC_QUESTIONS.questions) || [];
+    var rep = E.buildReport(d, window.SC_SCENES, window.SC_BASELINE, d.createdAt, qs);
+    var meta = { name: d.company && d.company.name, date: d.createdAt, mode: d.mode };
+    app.innerHTML = E.renderAsklist(rep, meta);
+  } catch (e) {
+    app.innerHTML = '<div class="paper"><h2>レポートを表示できませんでした</h2><p>診断のデータが見つからないか、壊れています。同じフォルダのファイルを動かしたり消したりしていないか確かめて、診断をやり直してください。</p></div>';
+  }
+})();
+</script>
+</body>
+</html>

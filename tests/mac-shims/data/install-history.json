@@ -1,0 +1,40 @@
+{
+  "SPInstallHistoryDataType" : [
+    {
+      "_name" : "Slack",
+      "install_date" : "2026-10-23T09:00:00Z",
+      "install_version" : "4.40",
+      "package_source" : "package_source_other"
+    },
+    {
+      "_name" : "macOS 15.5",
+      "install_date" : "2026-08-02T01:02:03Z",
+      "install_version" : "15.5",
+      "package_source" : "package_source_apple"
+    },
+    {
+      "_name" : "macOS 15.6.1",
+      "install_date" : "2026-10-10T05:06:07Z",
+      "install_version" : "15.6.1",
+      "package_source" : "package_source_apple"
+    },
+    {
+      "_name" : "XProtectPlistConfigData",
+      "install_date" : "2026-10-20T11:12:13Z",
+      "install_version" : "5300",
+      "package_source" : "package_source_apple"
+    },
+    {
+      "_name" : "XProtectPayloads",
+      "install_date" : "2026-10-18T00:00:00Z",
+      "install_version" : "170",
+      "package_source" : "package_source_apple"
+    },
+    {
+      "_name" : "Safari",
+      "install_date" : "2026-10-23T09:00:00Z",
+      "install_version" : "27.0",
+      "package_source" : "package_source_apple"
+    }
+  ]
+}

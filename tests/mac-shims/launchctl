@@ -1,0 +1,16 @@
+#!/bin/bash
+# Fake launchctl print-disabled system. SHIM_LAUNCHCTL = none (default) | ssh | screen | both | old | denied
+[ "$1" = "print-disabled" ] || exit 1
+case "${SHIM_LAUNCHCTL:-none}" in
+  denied) echo "Could not print disabled services: Operation not permitted" >&2; exit 1 ;;
+esac
+echo "disabled services = {"
+printf '\t"com.apple.metadata.mds" => disabled\n'
+case "${SHIM_LAUNCHCTL:-none}" in
+  none) printf '\t"com.openssh.sshd" => disabled\n' ;;
+  ssh) printf '\t"com.openssh.sshd" => enabled\n' ;;
+  screen) printf '\t"com.apple.screensharing" => enabled\n' ;;
+  both) printf '\t"com.openssh.sshd" => enabled\n\t"com.apple.screensharing" => enabled\n' ;;
+  old) printf '\t"com.openssh.sshd" => false\n\t"com.apple.screensharing" => true\n' ;;
+esac
+echo "}"
