@@ -151,4 +151,24 @@ describe("SKILL.md", () => {
       expect(sh).toMatch(new RegExp("\\b" + l.match(/run\.sh (\w+)/)[1] + "\\)"));
     }
   });
+
+  test("Codex など Claude Code 以外で使うときの読み替えが書いてある", () => {
+    const m = body.match(/## Codex など、Claude Code 以外で使うとき\n([\s\S]*?)(\n## |$)/);
+    expect(m).not.toBeNull();
+    const sec = m[1];
+    expect(sec).toMatch(/`\$\{CLAUDE_SKILL_DIR\}` は、この SKILL\.md があるフォルダの場所に置き換えて/);
+    expect(sec).toMatch(/番号を付けてチャットで聞き、番号で答えてもらう/);
+    expect(sec).toMatch(/許可を求めて同じコマンドを実行し直す/);
+    expect(sec).toMatch(/別のコマンドで代わりに調べない/);
+    expect(sec).not.toMatch(/```/);
+    expect(body.indexOf("## Codex など、Claude Code 以外で使うとき")).toBeLessThan(body.indexOf("## 手順"));
+  });
+
+  test("最後の伝え方で、レポートの一番下から個別相談を申し込めることを 1 文で伝える（会社の診断と自分の PC の両方）", () => {
+    const m = body.match(/## 最後の伝え方\n([\s\S]*?)(\n## |$)/);
+    const sec = m[1];
+    expect(sec).toMatch(/次の 5 点だけを伝える/);
+    expect(sec).toMatch(/5\. 個別相談：レポートの一番下から、無料の個別相談を申し込める/);
+    expect(sec).toMatch(/自分の PC の診断の最後は[\s\S]*レポートの一番下から無料の個別相談を申し込めることを 1 文で伝える/);
+  });
 });
