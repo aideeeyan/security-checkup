@@ -1,0 +1,4 @@
+interface:
+  display_name: "セキュリティ診断"
+  short_description: "質問に答えて PC の設定を読むだけで、会社のセキュリティの状態がレポートでわかります"
+  default_prompt: "$security-checkup でセキュリティ診断をしたい"

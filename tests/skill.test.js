@@ -171,4 +171,14 @@ describe("SKILL.md", () => {
     expect(sec).toMatch(/5\. 個別相談：レポートの一番下から、無料の個別相談を申し込める/);
     expect(sec).toMatch(/自分の PC の診断の最後は[\s\S]*レポートの一番下から無料の個別相談を申し込めることを 1 文で伝える/);
   });
+
+  test("Codex の画面用の設定がある（表示名・短い説明・呼び出しの例）", () => {
+    const y = fs.readFileSync(path.join(DIR, "agents", "openai.yaml"), "utf8");
+    expect(y).toMatch(/^interface:\n/);
+    expect(y).toContain('  display_name: "セキュリティ診断"');
+    const short = y.match(/  short_description: "([^"]+)"/)[1];
+    expect(short.length).toBeGreaterThanOrEqual(25);
+    expect(short.length).toBeLessThanOrEqual(64);
+    expect(y).toMatch(/  default_prompt: "[^"]*\$security-checkup[^"]*"/);
+  });
 });
