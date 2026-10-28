@@ -8,8 +8,8 @@ Claude Code と Codex のどちらでも使えます。
 
 ## 入れ方
 
-1. このページの「Code」→「Download ZIP」でダウンロードし、展開します。
-2. 中の `security-checkup` フォルダだけを、使っている道具のスキル置き場にコピーします。`tests` などほかのものは要りません。
+1. このページの右にある「Releases」から、いちばん新しい版の `security-checkup-v〇.〇.〇.zip` をダウンロードし、展開します。
+2. できた `security-checkup` フォルダを、使っている道具のスキル置き場にコピーします。
 
 | 道具 | Mac | Windows |
 |---|---|---|
