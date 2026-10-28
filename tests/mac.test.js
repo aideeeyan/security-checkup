@@ -152,10 +152,13 @@ describe("mac parts: facts", () => {
     expect(part("antivirus", { SHIM_STAT_DAY: "2026-10-23" }).facts.definitionsUpdatedAt).toBe("2026-10-20");
     expect(part("antivirus", { SC_XPROTECT_INFO: info }).facts.definitionsUpdatedAt).toBe("2026-10-20");
     expect(part("antivirus", { SC_XPROTECT_INFO: info, SHIM_STAT_DAY: "garbage" }).facts.definitionsUpdatedAt).toBe("2026-10-20");
-    // GNU/Linux stat (stat -f means filesystem status there) fails cleanly
-    const linux = part("antivirus", { SC_XPROTECT_INFO: info, SHIM_STAT: "real" });
-    expect(linux.unavailable).toBe(null);
-    expect(linux.facts.definitionsUpdatedAt).toBe("2026-10-20");
+    // GNU/Linux stat (stat -f means filesystem status there) fails cleanly. On a Mac the real stat is BSD stat and
+    // reads the file's own date, so this part only checks the GNU case.
+    if (process.platform !== "darwin") {
+      const linux = part("antivirus", { SC_XPROTECT_INFO: info, SHIM_STAT: "real" });
+      expect(linux.unavailable).toBe(null);
+      expect(linux.facts.definitionsUpdatedAt).toBe("2026-10-20");
+    }
   });
 
   test("antivirus: history unreadable keeps the product list", () => {
